@@ -11,16 +11,16 @@ class Office extends Model
         'city_id',
         'deleted',
         'phone',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
@@ -28,5 +28,9 @@ class Office extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/offices/'.$this->getKey());
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class,'city_id','id');
     }
 }

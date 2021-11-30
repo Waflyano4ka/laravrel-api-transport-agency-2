@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent;
 class Model extends Eloquent\Model
 {
     protected $fillable = [
-        'deleted',
         'model_name',
+        'deleted',
 
     ];
 

@@ -10,16 +10,16 @@ class PostUser extends Model
         'deleted',
         'post_id',
         'user_id',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
@@ -27,5 +27,13 @@ class PostUser extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/post-users/'.$this->getKey());
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function post(){
+        return $this->belongsTo(Post::class,'post_id','id');
     }
 }

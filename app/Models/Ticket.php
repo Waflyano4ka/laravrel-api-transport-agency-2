@@ -10,16 +10,16 @@ class Ticket extends Model
         'deleted',
         'passenger_id',
         'schedule_id',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
@@ -27,5 +27,13 @@ class Ticket extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/tickets/'.$this->getKey());
+    }
+
+    public function passenger(){
+        return $this->belongsTo(Passenger::class,'passenger_id','id');
+    }
+
+    public function schedule(){
+        return $this->belongsTo(Schedule::class,'schedule_id','id');
     }
 }

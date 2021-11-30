@@ -12,16 +12,16 @@ class Route extends Model
         'departure_city_id',
         'distance',
         'user_id',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
@@ -29,5 +29,15 @@ class Route extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/routes/'.$this->getKey());
+    }
+
+    public function departureСity(){
+        return $this->belongsTo(City::class,'departure_city_id','id');
+    }
+    public function arrivalСity(){
+        return $this->belongsTo(City::class,'arrival_city_id','id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }
